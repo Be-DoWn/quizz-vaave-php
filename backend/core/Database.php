@@ -17,8 +17,8 @@ class Database
         // $dns = "mysql:host=localhost;port=3306;dbname=php;charset=utf8mb4";
         $this->connection = new PDO(
             $dsn,
-            'root',
-            '1234',
+            'user_name',
+            'passowrd',
             [PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC]
         );
     }
@@ -50,5 +50,4 @@ class Database
     {
         return $this->statement->fetchAll();
     }
-
 }
