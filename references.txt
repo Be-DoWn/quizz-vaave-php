@@ -1,0 +1,18 @@
+1. DataBase Design 
+    docs  - https://gist.github.com/bradtraversy/c831baaad44343cc945e76c2e30927b3
+    Video tutorials - https://youtu.be/5RpUmDEsn1k?si=bqhamy5KEdUbNTTs
+                    - https://youtu.be/Cz3WcZLRaWc?si=Hq_wafcKlWK9anr9
+    tools - https://dbdiagram.io/
+            https://boardmix.com/
+
+2. Google authentication - https://www.npmjs.com/package/@react-oauth/google
+    how to get the client id - https://console.cloud.google.com/apis/credentials
+    how to get the userinfo form the access token - https://stackoverflow.com/questions/24442668/google-oauth-api-to-get-users-email-address#answer-62761046
+
+4. php -
+    tutorial - https://laracasts.com/series/php-for-beginners-2023-edition/episodes/1
+    http request - https://stackoverflow.com/questions/15620124/http-requests-with-file-get-contents-getting-the-response-code
+    function sendResponse - chatgpt
+    session destroy - https://www.php.net/manual/en/function.session-destroy.php
+    reading data from post request - https://stackoverflow.com/questions/18866571/receive-json-post-with-php
+    cors error - https://stackoverflow.com/questions/44479681/cors-php-response-to-preflight-request-doesnt-pass-am-allowing-origin

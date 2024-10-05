@@ -1,0 +1,109 @@
+1. Login page
+    Description - used React OAuth2 | Google to login the user and creating a session for the user. 
+    Input - 1. on success login it throws a response token 
+             2. want the user info from the response token - need [req url, response.accesstoken]
+             3. POST [ url,accessToken]
+    output - 1. (on success)
+                1. get the userinfo 
+                2. creating session for the user by express-session
+                3. adding user info to the database is user not existed
+                4. navigating user to topics page
+             2. (on Error)
+                1. return the error message
+
+2. Topics page
+    Description - checking user session is valid and want to show topics else navigating to home
+    Input - Get( url, cookies)
+    output - (on success) - 
+                {
+                loggedIn: true, "user": {"email": "user@example.com"}
+                }
+                Get(url) - on success
+                    topicsdata-> [    
+                    {id: 1, topic_name: 'Sports'}
+                    {id: 2, topic_name: 'Science & Technology'}
+                    {id: 3, topic_name: 'Arts'}
+                    {id: 4, topic_name: 'Politics'}
+                    ]
+                    on error - { Error fetching topics, err}
+            - on error - Session is invalid 
+                       { loggedIn: false }
+3. Question page
+    Description - checking user session and want to show the options else back to home
+    Input - get (/session, cookies) - session checking
+    output - on success - 
+                    {
+                    loggedIn: true, "user": {"email": "user@example.com"}
+                    }
+                    getting Question- 
+            on error - session is invalid 
+                    { loggedIn: false }
+    getting Question- 
+                    Description - getting all question for the topic choosed by user. 
+                    Input - Get(/topic, topic_name)
+                    output - on success return - 40 array results  
+                            [
+                                {
+                                is_correct:1
+                                level_id:1
+                                option_id:1
+                                option_text:"option 1 "
+                                question_id:1
+                                question_text:"beginner 1 question on Sports"
+                                },
+                                {
+                                is_correct:1
+                                level_id:1
+                                option_id:2
+                                option_text:"option 1 "
+                                question_id:1
+                                question_text:"beginner 1 question on Sports"
+                                },
+                                {
+                                is_correct:1
+                                level_id:1
+                                option_id:3
+                                option_text:"option 1 "
+                                question_id:1
+                                question_text:"beginner 1 question on Sports"
+                                },
+                                {
+                                is_correct:1
+                                level_id:1
+                                option_id:4
+                                option_text:"option 1 "
+                                question_id:1
+                                question_text:"beginner 1 question on Sports"
+                                },
+                                .....
+                            ]
+                        on error - {err.message }
+    POST(/userdata, [user data], topic_id)
+        Description - Saving all user reponses and score in the database
+        input - POST(/userdata, {userdata},topic_id)
+            userdata - [useremail, score,
+                        response-{
+                            [level_id, question_id, selectedoption_id, is_correct]
+                            [level_id, question_id, selectedoption_id, is_correct]
+                            [level_id, question_id, selectedoption_id, is_correct]
+                            ...
+                        }
+                        ]
+            output - on success 
+                        {message : "User data stored successfully"}
+                    on error
+                        { message: "Error saving user responses", error: error.message }
+4. Logout -
+        Description - checking user session and destroy the session;
+        Input - get Resquest - just requesting to the server/logout url deleting cookies and session
+        output - on success - sessionDestroyed true
+                on error - sessionDestroyed false
+
+//server side 
+
+5. login.php -
+        i. Get request to the oauth uri to get the user email
+        input - accessToken
+        output - on sucess [userinfo[name,mail,profile]]
+        on error- if accesstoken is empty - returns access token failed;
+        if on request response is failed - returns reponse failed from google oauth url
